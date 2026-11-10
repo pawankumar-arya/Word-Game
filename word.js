@@ -4,26 +4,18 @@ let button = document.querySelector(".button");
 let gamePlay = false;
 let newWord = "";
 let scrambleWord = "";
-let gameAudio = new Audio("./suspense.wav");
-
-let clickAudio = new Audio("./click.mp3");
-
-//
 
 button.addEventListener("click", function () {
-  clickAudio.play();
-
   if (!gamePlay) {
     gamePlay = true;
     // gamePlay=!gamePlay;
     button.innerText = "Guess";
     newWord = randomword();
     scrambleWord = modify(newWord.split("")).join("");
-    // console.log(scrambleWord.join(""));
+
     msg.innerHTML = scrambleWord;
   } else {
     let user = userInput.value;
-
     if (newWord == user) {
       gamePlay = false;
       msg.innerHTML = "Congrats YOU Guessed It Right";
@@ -45,7 +37,6 @@ function modify(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     let temp = arr[i];
     let j = Math.floor(Math.random() * (i + 1));
-
     arr[i] = arr[j];
     arr[j] = temp;
   }
